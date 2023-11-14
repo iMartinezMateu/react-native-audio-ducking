@@ -28,18 +28,18 @@ class AudioDuckingService : AudioManager.OnAudioFocusChangeListener {
       .setAcceptsDelayedFocusGain(true)
       .setOnAudioFocusChangeListener(this)
       .build()
-    val requestAudioFocusResponse = mAudioManager?.requestAudioFocus(focusRequest)
+    val requestAudioFocusResponse = mAudioManager?.requestAudioFocus(focusRequest)!!
     return parseAudioRequestResponse(requestAudioFocusResponse)
   }
 
   @RequiresApi(api = Build.VERSION_CODES.FROYO)
   fun duckAudioFroyo(): String? {
-    val requestAudioFocusResponse = mAudioManager?.requestAudioFocus(this, AudioManager.USE_DEFAULT_STREAM_TYPE, AudioManager.AUDIOFOCUS_GAIN_TRANSIENT_MAY_DUCK)
+    val requestAudioFocusResponse = mAudioManager?.requestAudioFocus(this, AudioManager.USE_DEFAULT_STREAM_TYPE, AudioManager.AUDIOFOCUS_GAIN_TRANSIENT_MAY_DUCK)!!
     return parseAudioRequestResponse(requestAudioFocusResponse)
   }
 
   fun abandonAudioFocus(): String? {
-    val result = mAudioManager?.abandonAudioFocus(this)
+    val result = mAudioManager?.abandonAudioFocus(this)!!
     return parseAudioRequestResponse(result);
   }
 
